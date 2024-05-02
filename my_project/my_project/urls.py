@@ -15,23 +15,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from myapp import views
-from blogs.views import createBlog
-from blogs.views import updateBlog
-from blogs.views import deleteBlogs
-from inventoryapp import views as ivnt
-from newsapp import views as news
-from rootbilling import views as rootB
+from django.urls import path,include
+# from myapp import views
+# from blogs.views import createBlog
+# from blogs.views import updateBlog
+# from blogs.views import deleteBlogs
+# from inventoryapp import views as ivnt
+# from newsapp import views as news
+# from rootbilling import views as rootB
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",views.Student),
-    path("name/",views.PrintName),
-    path("blog/create/",createBlog),
-    path("blog/update/",updateBlog),
-    path("blog/delete/",deleteBlogs),
-    path("news/", news.newsPaper),
-    path("rootbilling/",ivnt.inventory),
-    path("rootbilling/",rootB.rootbilling)
+    # path("",views.Student),
+    # path("name/",views.PrintName),
+    # path("blog/create/",createBlog),
+    # path("blog/update/",updateBlog),
+    # path("blog/delete/",deleteBlogs),
+    # path("news/", news.newsPaper),
+    # path("rootbilling/",ivnt.inventory),
+    # path("rootbilling/",rootB.rootbilling),
+    path("blog/",include("blogs.urls")),
+    path("",include("myapp.urls")),
+    path("news/",include("newsapp.urls")),
+    path("root/",include("rootbilling.urls")),
+    path("invent/",include("inventoryapp.urls"))
 ]
